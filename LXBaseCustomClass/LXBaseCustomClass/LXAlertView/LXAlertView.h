@@ -25,30 +25,30 @@
 
 #import <UIKit/UIKit.h>
 
-@class WCAlertView;
+@class LXAlertView;
 
-typedef NS_ENUM(NSInteger, WCAlertViewStyle)
+typedef NS_ENUM(NSInteger, LXAlertViewStyle)
 {
-    WCAlertViewStyleDefault = 0,
+    LXAlertViewStyleDefault = 0,
     
-    WCAlertViewStyleWhite,
-    WCAlertViewStyleWhiteHatched,
-    WCAlertViewStyleBlack,
-    WCAlertViewStyleBlackHatched,
-    WCAlertViewStyleViolet,
-    WCAlertViewStyleVioletHatched,
+    LXAlertViewStyleWhite,
+    LXAlertViewStyleWhiteHatched,
+    LXAlertViewStyleBlack,
+    LXAlertViewStyleBlackHatched,
+    LXAlertViewStyleViolet,
+    LXAlertViewStyleVioletHatched,
     
-    WCAlertViewStyleCustomizationBlock,
+    LXAlertViewStyleCustomizationBlock,
 };
 
-typedef void(^CustomizationBlock)(WCAlertView *alertView);
+typedef void(^CustomizationBlock)(LXAlertView *alertView);
 
-@interface WCAlertView : UIAlertView
+@interface LXAlertView : UIAlertView
 
 /*
  *  Predefined alert styles
  */
-@property (nonatomic,assign) WCAlertViewStyle style;
+@property (nonatomic,assign) LXAlertViewStyle style;
 
 /*
  *  Title and message label styles
@@ -102,12 +102,12 @@ typedef void(^CustomizationBlock)(WCAlertView *alertView);
 /*
  *  Setting default appearance for all WCAlertView's
  */
-+ (void)setDefaultStyle:(WCAlertViewStyle)style;
++ (void)setDefaultStyle:(LXAlertViewStyle)style;
 + (void)setDefaultCustomiaztonBlock:(CustomizationBlock)block;
 
 
-+ (id)showAlertWithTitle:(NSString *)title message:(NSString *)message customizationBlock:(void (^)(WCAlertView *alertView))customization
-         completionBlock:(void (^)(NSUInteger buttonIndex, WCAlertView *alertView))block
++ (id)showAlertWithTitle:(NSString *)title message:(NSString *)message customizationBlock:(void (^)(LXAlertView *alertView))customization
+         completionBlock:(void (^)(NSUInteger buttonIndex, LXAlertView *alertView))block
        cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... NS_REQUIRES_NIL_TERMINATION;
 
 

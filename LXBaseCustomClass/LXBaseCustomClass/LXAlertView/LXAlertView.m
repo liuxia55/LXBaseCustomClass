@@ -23,16 +23,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "WCAlertView.h"
+#import "LXAlertView.h"
 #import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
 #import <CoreGraphics/CoreGraphics.h>
 
-@interface WCAlertView () <UIAlertViewDelegate>
+@interface LXAlertView () <UIAlertViewDelegate>
 
 @end
 
-@implementation WCAlertView
+@implementation LXAlertView
 @synthesize buttonShadowColor = _buttonShadowColor;
 @synthesize buttonShadowOffset = _buttonShadowOffset;
 @synthesize buttonTextColor = _buttonTextColor;
@@ -46,10 +46,10 @@
 @synthesize buttonFont = _buttonFont;
 
 
-static WCAlertViewStyle kDefaultAlertStyle = WCAlertViewStyleDefault;
+static LXAlertViewStyle kDefaultAlertStyle = LXAlertViewStyleDefault;
 static CustomizationBlock kDefauldCustomizationBlock = nil;
 
-+ (void)setDefaultStyle:(WCAlertViewStyle)style
++ (void)setDefaultStyle:(LXAlertViewStyle)style
 {
     
     kDefaultAlertStyle = style;
@@ -61,9 +61,9 @@ static CustomizationBlock kDefauldCustomizationBlock = nil;
     kDefauldCustomizationBlock = block;
 }
 
-+ (id)showAlertWithTitle:(NSString *)title message:(NSString *)message customizationBlock:(void (^)(WCAlertView *alertView))customization completionBlock:(void (^)(NSUInteger buttonIndex, WCAlertView *alertView))block cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ...
++ (id)showAlertWithTitle:(NSString *)title message:(NSString *)message customizationBlock:(void (^)(LXAlertView *alertView))customization completionBlock:(void (^)(NSUInteger buttonIndex, LXAlertView *alertView))block cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ...
 {
-  static WCAlertView* alertView = nil;
+  static LXAlertView* alertView = nil;
    alertView = [[self alloc] initWithTitle:title message:message completionBlock:block cancelButtonTitle:cancelButtonTitle otherButtonTitles:nil];
     
     NSInteger otherButtonCount = 0;
@@ -125,7 +125,7 @@ static CustomizationBlock kDefauldCustomizationBlock = nil;
         [self defaultStyle];
         
         if (kDefauldCustomizationBlock) {
-            self.style = WCAlertViewStyleCustomizationBlock;
+            self.style = LXAlertViewStyleCustomizationBlock;
         }
         
         va_list args;
@@ -138,7 +138,7 @@ static CustomizationBlock kDefauldCustomizationBlock = nil;
 }
 
 
-- (id)initWithTitle:(NSString *)title message:(NSString *)message completionBlock:(void (^)(NSUInteger buttonIndex, WCAlertView *alertView))block cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... {
+- (id)initWithTitle:(NSString *)title message:(NSString *)message completionBlock:(void (^)(NSUInteger buttonIndex, LXAlertView *alertView))block cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... {
 	objc_setAssociatedObject(self, "blockCallback", [block copy], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 	
 	if (self = [self initWithTitle:title message:message delegate:self cancelButtonTitle:nil otherButtonTitles:nil]) {
@@ -165,7 +165,7 @@ static CustomizationBlock kDefauldCustomizationBlock = nil;
 	
 }
 
-- (void)setStyle:(WCAlertViewStyle)style
+- (void)setStyle:(LXAlertViewStyle)style
 {
     if (style != _style) {
         _style = style;
@@ -189,30 +189,30 @@ static CustomizationBlock kDefauldCustomizationBlock = nil;
     
 }
 
-- (void)customizeAlertViewStyle:(WCAlertViewStyle)style
+- (void)customizeAlertViewStyle:(LXAlertViewStyle)style
 {
     switch (style) {
-        case WCAlertViewStyleDefault:
+        case LXAlertViewStyleDefault:
             break;
-        case WCAlertViewStyleWhite:
+        case LXAlertViewStyleWhite:
             [self whiteAlertHatched:NO];
             break;
-        case WCAlertViewStyleWhiteHatched:
+        case LXAlertViewStyleWhiteHatched:
             [self whiteAlertHatched:YES];
             break;
-        case WCAlertViewStyleBlack:
+        case LXAlertViewStyleBlack:
             [self blackAlertHatched:NO];
             break;
-        case WCAlertViewStyleBlackHatched:
+        case LXAlertViewStyleBlackHatched:
             [self blackAlertHatched:YES];
             break;
-        case WCAlertViewStyleViolet:
+        case LXAlertViewStyleViolet:
             [self violetAlertHetched:NO];
             break;
-        case WCAlertViewStyleVioletHatched:
+        case LXAlertViewStyleVioletHatched:
             [self violetAlertHetched:YES];
             break;
-        case WCAlertViewStyleCustomizationBlock:
+        case LXAlertViewStyleCustomizationBlock:
             if (kDefauldCustomizationBlock) {
                 kDefauldCustomizationBlock(self);
             }
