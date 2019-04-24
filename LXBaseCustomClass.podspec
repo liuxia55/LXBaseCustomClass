@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name         = 'LXBaseCustomClass'
-s.version      = '0.0.4'
+s.version      = '0.0.5'
 s.summary      = 'BaseClass'
 s.description  = <<-DESC
 基础控制器 model button 提示框 弹框 textView占位 lable行间距 color转换
